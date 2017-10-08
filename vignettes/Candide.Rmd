@@ -1,0 +1,46 @@
+---
+title: "Candide Example"
+author: "Bastiaan Quast"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Candide Example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+params:
+  language: English
+---
+
+Load the package
+
+```{r load-package}
+library(multilang)
+```
+
+```{r data}
+English <- c("Candide: or, Optimism", 
+             "Voltaire",
+             "Translated from the German edition.",
+             "CHAPTER 1: How Candide Was Brought Up in a Magnificent Castle and How He Was Driven Thence")
+German <- c("Candide",
+            "Voltaire",
+            NA,
+            "Kapitel 1")
+French <- c("Candide, ou l'Optimisme", 
+            "Voltaire",
+            "traduit de le edition alleman.",
+             "CHAPITRE 1: Comment Candide a été introduit dans un château magnifique et comment il a été conduit de là")
+labels <- c("title",
+            "author",
+            "translation",
+            "ch1")
+translation <- data.frame(English, German, French, row.names = labels, stringsAsFactors = FALSE)
+```
+
+# `r inserttext("title")`
+
+### `r inserttext("author")`
+
+`r inserttext("translation")`
+
+## `r inserttext("ch1")`
