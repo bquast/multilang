@@ -7,4 +7,4 @@
 #' @export
 
 inserttext <- function(label)
-  translation[label, param$language]
+  translation[label, params$language]
