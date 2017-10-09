@@ -17,25 +17,48 @@ Load the package
 library(multilang)
 ```
 
+Create the data. Normally the package automatically does `load(translation.RData)`, unless specified otherwise in the YAML front-matter.
+
 ```{r data}
 English <- c("Candide: or, Optimism", 
              "Voltaire",
-             "Translated from the German edition.",
-             "CHAPTER 1: How Candide Was Brought Up in a Magnificent Castle and How He Was Driven Thence")
+             "Translated from German edition.",
+             "CHAPTER 1: How Candide Was Brought Up in a Magnificent Castle and How He Was Driven Thence",
+             "In the country of Westphalia, in the castle of the most noble Baron
+of Thunder–ten–tronckh, lived a youth whom Nature had endowed with
+a most sweet disposition.",
+             "reader happyness",
+             "time")
 German <- c("Candide",
             "Voltaire",
             NA,
-            "Kapitel 1")
+            "Kapitel 1",
+            NA,
+            NA,
+            NA)
 French <- c("Candide, ou l'Optimisme", 
             "Voltaire",
-            "traduit de le edition alleman.",
-             "CHAPITRE 1: Comment Candide a été introduit dans un château magnifique et comment il a été conduit de là")
+            "Traduit de l'Allemand.",
+            "CHAPITRE PREMIER: Comment Candide fut élevé dans un beau château, et comment il fut chassé d'icelui",
+            " Il y avait en Westphalie, dans le château de monsieur le baron de Thunder-ten-tronckh, un jeune garçon à qui la nature avait donné les mœurs les plus douces.",
+            NA,
+            NA)
 labels <- c("title",
             "author",
             "translation",
-            "ch1")
-translation <- data.frame(English, German, French, row.names = labels, stringsAsFactors = FALSE)
+            "ch1",
+            "ch1s1",
+            "ch1gr1",
+            "ch1gr2")
+
+translation <- data.frame(English, 
+                          German, 
+                          French, 
+                          row.names = labels, 
+                          stringsAsFactors = FALSE)
 ```
+
+Now print some things using the inline R chunks:
 
 # `r inserttext("title")`
 
@@ -44,3 +67,15 @@ translation <- data.frame(English, German, French, row.names = labels, stringsAs
 `r inserttext("translation")`
 
 ## `r inserttext("ch1")`
+
+`r inserttext("ch1s1")`
+
+It also works in chunks, for instance for graphs.
+
+```{r graph}
+plot(10:1,
+     type="l",
+     main=inserttext("ch1gr1"),
+     xlab=inserttext("ch1gr2"),
+     ylab=inserttext("ch1gr1") )
+```
